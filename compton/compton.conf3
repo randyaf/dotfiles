@@ -1,0 +1,13 @@
+backend = "xrender";
+glx-no-stencil = true;
+
+# Shadow
+shadow = true;
+no-dnd-shadow = true;
+no-dock-shadow = true;
+clear-shadow = true;
+shadow-radius = 7;
+shadow-offset-x = -12;
+shadow-offset-y = -12;
+shadow-opacity = 1.0;
+

@@ -1,0 +1,184 @@
+[colors]
+
+;background = #090914
+background = ${xrdb:color0:#222}
+;background-alt = #090914
+background-alt = ${xrdb:color0:#222}
+;foreground = #d9979a
+foreground = ${xrdb:color7:#222}
+;foreground-alt = #d9979a
+foreground-alt = ${xrdb:color7:#222}
+accent = #81a1c1
+alert = #ebcb8b
+
+
+[bar/top]
+
+monitor = eDP-1-1
+height = 21
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+padding-left = 3
+padding-right = 3
+module-margin-left = 2
+module-margin-right = 2
+font-0 = Product Sans:pixelsize=12;2
+font-1 = FontAwesome:pixelsize=12;2
+;tray-position = right
+;tray-padding = 2
+;tray-background = ${colors.background}
+;wm-restack = bspwm
+modules-left = i3 
+modules-center = xwindow
+modules-right = spotify wlan volume battery ten-eleven
+
+
+[module/i3]
+
+type = internal/i3
+label-focused = %icon%
+label-focused-background = ${colors.foreground-alt}
+label-focused-foreground = ${colors.background-alt}
+label-focused-padding = 2
+label-unfocused = %icon%
+label-unfocused-padding = 2
+label-occupied = %icon%
+label-occupied-padding = 2
+label-occupied-foreground= ${colors.foreground}
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-default = ♟
+
+
+[module/xwindow]
+
+type = internal/xwindow
+label = %title:0:100:...%
+
+
+[module/mpd]
+
+type = internal/mpd
+;format-online = <icon-prev>  <label-time>  <label-song>  <icon-next>
+format-online = <toggle>  <label-song>
+;format-online = <label-time>  <label-song>
+;icon-prev = 
+;icon-next = 
+icon-play = 
+icon-pause = 
+;icon-prev-foreground = ${colors.foreground}
+;icon-next-foreground = ${colors.foreground}
+icon-pause-foreground = ${colors.foreground}
+label-song-maxlen = 45
+label-song-ellipsis = true
+
+
+[module/wlan]
+
+type = internal/network
+interface = wlp2s0
+interval = 15
+format-connected = <label-connected>
+;label-connected =  %signal%% %essid%
+label-connected = "%{A1:~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &:} %signal%% %essid%%{A}"
+format-disconnected = <label-disconnected>
+;label-disconnected =   Disconnected
+label-disconnected = "%{A1:~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &:} Disconected!%{A}"
+label-disconnected-foreground = ${colors.foreground-alt}
+click-left = ~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &
+
+
+[module/volume]
+
+type = internal/volume
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground}
+label-muted = Muted
+label-muted-foreground= ${colors.foreground-alt}
+
+
+[module/battery]
+
+type = internal/battery
+full-at = 98
+battery = BAT0
+adapter = AC0
+poll-interval = 60
+format-charging = <ramp-capacity>  <label-charging>
+label-charging =  %percentage%%
+label-full =" Full"
+format-discharging = <ramp-capacity>  <label-discharging>
+label-discharging = %percentage%%
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+
+[module/date]
+
+type = internal/date
+interval = 30
+label = " %date% %time%"
+date =
+date-alt = %a %d
+time = %H:%M
+time-alt = 
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/spotify_status.py -f '{artist} - {song}'
+click-left = playerctl -p spotify previous
+click-middle = playerctl -p spotify play-pause
+click-right = playerctl -p spotify next
+
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${color.background}
+format-volume-foreground = ${color.foreground}
+format-volume-padding = 1
+
+label-volume = %percentage%%
+
+format-muted-prefix = 
+label-muted = " Muted"
+format-muted-background = ${color.background}
+format-muted-foreground = ${color.foreground}
+format-muted-padding = 1
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+
+
+[module/ten-eleven]
+type = custom/script
+exec = /opt/jdk-11.0.6/bin/java -jar ~/.config/polybar/scripts/TenEleven.jar
+interval = 60
+format-prefix = " "
