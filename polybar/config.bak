@@ -1,10 +1,17 @@
 [colors]
+
+;background = #090914
 background = ${xrdb:color0:#222}
+;background-alt = #090914
+background-alt = ${xrdb:color0:#222}
+;foreground = #d9979a
 foreground = ${xrdb:color7:#222}
+;foreground-alt = #d9979a
 foreground-alt = ${xrdb:color7:#222}
-primary = ${xrdb:color1:#222}
-secondary = ${xrdb:color2:#222}
-alert = ${xrdb:color3:#222}
+accent = #81a1c1
+alert = #ebcb8b
+
+
 [bar/top]
 
 monitor = eDP-1-1
@@ -13,76 +20,45 @@ height = 21
 fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
-underline-size = 3
-spacing = 0
-padding-left = 0
-padding-right = 0
-module-margin-left = 0
-module-margin-right = 0
-font-0 = font\-logos:pixelsize=12;2
-font-1 = FontAwesome:pixelsize=12;2
-font-2 = Product Sans:pixelsize=12:weight=bold;2
-font-3 = FantasqueSansMono Nerd Font Mono:pixelsize=12;2
-;tray-position = right
-;tray-padding = 2
-;tray-background = ${colors.background}
-;wm-restack = bspwm
-modules-left = manjaro-text right-arrow network-speed-indicator
-modules-center = i3
-modules-right = spotify wlan volume battery left-arrow ten-eleven
-
-[bar/bottom]
-bottom = true
-
-monitor = eDP-1-1
-monitor-fallback = eDP-1
-height = 21
-background = ${colors.background}
-foreground = ${colors.foreground}
-;module-margin-left = 2
-;module-margin-right = 2
+padding-left = 3
+padding-right = 3
+module-margin-left = 2
+module-margin-right = 2
 font-0 = Product Sans:pixelsize=12;2
 font-1 = FontAwesome:pixelsize=12;2
-font-2 = Fantasque Sans Mono:pixelsize=12;2
 ;tray-position = right
 ;tray-padding = 2
 ;tray-background = ${colors.background}
 ;wm-restack = bspwm
-modules-left = text1
-modules-center = i3
-;modules-right = spotify wlan volume battery ten-eleven
-border-color = fff0
-border-left-size = 40
-border-right-size = 40
-
+modules-left = i3 
+modules-center = xwindow
+modules-right = spotify wlan volume battery ten-eleven
 
 
 [module/i3]
 
 type = internal/i3
 label-focused = %icon%
-label-focused-background = ${colors.foreground}
-label-focused-foreground = ${colors.secondary}
-label-focused-underline = ${colors.secondary}
-label-focused-padding = 1
+label-focused-background = ${colors.foreground-alt}
+label-focused-foreground = ${colors.background-alt}
+label-focused-padding = 2
 label-unfocused = %icon%
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 label-occupied = %icon%
-label-occupied-padding = 1
+label-occupied-padding = 2
 label-occupied-foreground= ${colors.foreground}
 label-urgent = %icon%
-label-urgent-background = ${colors.secondary}
-label-urgent-padding = 1
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty-padding = 2
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-default = ♟
-pin-workspaces = true
 
 
 [module/xwindow]
@@ -114,31 +90,24 @@ type = internal/network
 interface = wlp2s0
 interval = 15
 format-connected = <label-connected>
-;label-connected ="%signal%% "
-label-connected = "%{A1:~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &:}%signal%% %{A}"
+;label-connected =  %signal%%
+label-connected = "%{A1:~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &:} %signal%%%{A}"
 format-disconnected = <label-disconnected>
 ;label-disconnected =   Disconnected
 label-disconnected = "%{A1:~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &:} Disconected!%{A}"
 label-disconnected-foreground = ${colors.foreground-alt}
 click-left = ~/.config/rofi/rofi-wifi-menu/rofi-wifi-menu.sh &
 
-[module/network-speed-indicator]
-type = internal/network
-interface = wlp2s0
-interval = 1
-format-connected = <label-connected>
-label-connected = "  %downspeed%  %upspeed%"
-
 
 [module/volume]
 
 type = internal/volume
 format-volume = <label-volume>
-label-volume ="%percentage%% "
+label-volume = %percentage%%
 label-volume-foreground = ${colors.foreground}
-format-muted-prefix = ""
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground}
-label-muted = "Muted "
+label-muted = Muted
 label-muted-foreground= ${colors.foreground-alt}
 
 
@@ -149,11 +118,11 @@ full-at = 98
 battery = BAT0
 adapter = AC0
 poll-interval = 60
-format-charging = <ramp-capacity><label-charging>
-label-charging = "%percentage%% "
+format-charging = <ramp-capacity>  <label-charging>
+label-charging =  %percentage%%
 label-full =" Full"
-format-discharging = <ramp-capacity><label-discharging>
-label-discharging = "%percentage%% "
+format-discharging = <ramp-capacity>  <label-discharging>
+label-discharging = %percentage%%
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
@@ -194,10 +163,10 @@ format-volume-background = ${color.background}
 format-volume-foreground = ${color.foreground}
 format-volume-padding = 1
 
-label-volume = "%percentage%%"
+label-volume = %percentage%%
 
 format-muted-prefix = 
-label-muted = " Muted "
+label-muted = " Muted"
 format-muted-background = ${color.background}
 format-muted-foreground = ${color.foreground}
 format-muted-padding = 1
@@ -213,29 +182,4 @@ ramp-volume-4 = 
 type = custom/script
 exec = /opt/jdk-11.0.6/bin/java -jar ~/.config/polybar/scripts/TenEleven.jar
 interval = 60
-format-padding = 2
 format-prefix = " "
-format-foreground = ${colors.foreground}
-format-background = ${colors.secondary}
-
-[module/text1]
-type = custom/text
-content = "tamvan "
-[module/manjaro-text]
-type = custom/text
-content = " MANJARO"
-content-padding = 2
-content-background = ${colors.secondary}
-content-foreground = ${colors.foreground}
-
-[module/left-arrow]
-type = custom/text
-content = ""
-content-foreground = ${colors.secondary}
-
-
-
-[module/right-arrow]
-type = custom/text
-content = ""
-content-foreground = ${colors.secondary}

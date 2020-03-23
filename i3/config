@@ -32,6 +32,8 @@ exec_always --no-startup-id wal -R
 
 # starting nautilus in floating mode
 for_window [class="Nautilus"] floating enable, border normal 0
+# starting nautilus in floating mode
+for_window [class="Thunar"] floating enable, border normal 0
 
 # starting urxvt in floating mode
 for_window [class="URxvt" instance="floating_urxvt$"] floating enable, border normal 0
@@ -111,7 +113,7 @@ bindsym --release shift+Print exec scrot -s 'screenshot_%F__%H-%M-%S.png' -e 'mv
 # take screenshot of focused window
 bindsym ctrl+Print exec scrot -u 'screenshot_%F__%H-%M-%S.png' -e 'mv $f ~/Pictures/Screenshots/'
 # translate highlighted text
-bindsym ctrl+shift+j exec /home/randyaf/Documents/script/translate
+bindsym ctrl+shift+j exec notitranslation
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -224,6 +226,7 @@ for_window [class="Spotify"] move to workspace $ws4
 
 # workspace 5
 assign [class="Nautilus"] $ws5
+assign [class="Thunar"] $ws5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

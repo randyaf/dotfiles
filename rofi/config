@@ -6,4 +6,4 @@ rofi.align: center
 rofi.display-drun: App
 rofi.show-icons: true
 rofi.icon-theme: papirus 
-rofi.theme: ~/.config/rofi/orange.rasi
+rofi.theme: ~/.config/rofi/cloud.rasi
