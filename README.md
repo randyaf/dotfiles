@@ -1,5 +1,6 @@
 # My Dotfiles
 
+![Screenshot 3](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot3.png) 
 ![Screenshot 1](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot1.png)
 ![Screenshot 2](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot2.png)
 
