@@ -7,8 +7,7 @@ secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
 [bar/top]
 
-monitor = eDP-1-1
-monitor-fallback = eDP-1
+monitor = HDMI-1-1
 height = 21
 fixed-center = true
 background = ${colors.background}
@@ -23,14 +22,37 @@ font-0 = font\-logos:pixelsize=12;2
 font-1 = FontAwesome:pixelsize=12;2
 font-2 = Product Sans:pixelsize=12:weight=bold;2
 font-3 = FantasqueSansMono Nerd Font Mono:pixelsize=12;2
-font-4 = Kochi Gothic:pixelsize=12:weight=regular;2
 ;tray-position = right
 ;tray-padding = 2
 ;tray-background = ${colors.background}
 ;wm-restack = bspwm
-modules-left = window-title right-arrow network-speed-indicator cpu
-modules-center = i3 
-modules-right = spotify wlan volume battery date left-arrow eleven-twelve
+modules-left = manjaro-text right-arrow network-speed-indicator
+modules-center = i3
+modules-right = spotify wlan volume battery left-arrow ten-eleven
+
+[bar/bottom]
+bottom = true
+
+monitor = HDMI-1-1
+height = 21
+background = ${colors.background}
+foreground = ${colors.foreground}
+;module-margin-left = 2
+;module-margin-right = 2
+font-0 = Product Sans:pixelsize=12;2
+font-1 = FontAwesome:pixelsize=12;2
+font-2 = Fantasque Sans Mono:pixelsize=12;2
+;tray-position = right
+;tray-padding = 2
+;tray-background = ${colors.background}
+;wm-restack = bspwm
+modules-left = text1
+modules-center = i3
+;modules-right = spotify wlan volume battery ten-eleven
+border-color = fff0
+border-left-size = 40
+border-right-size = 40
+
 
 
 [module/i3]
@@ -59,14 +81,12 @@ ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-default = ♟
 pin-workspaces = true
-label = %title%
 
 
 [module/xwindow]
 
 type = internal/xwindow
-;;label = %title:0:100:...%
-label = %title%
+label = %title:0:100:...%
 
 
 [module/mpd]
@@ -129,7 +149,7 @@ adapter = AC0
 poll-interval = 60
 format-charging = <ramp-capacity><label-charging>
 label-charging = "%percentage%% "
-label-full =" Full "
+label-full =" Full"
 format-discharging = <ramp-capacity><label-discharging>
 label-discharging = "%percentage%% "
 ramp-capacity-0 = 
@@ -144,8 +164,8 @@ ramp-capacity-foreground = ${colors.foreground}
 
 type = internal/date
 interval = 30
-label = " %date% "
-date = %a, %B %d%
+label = " %date% %time%"
+date =
 date-alt = %a %d
 time = %H:%M
 time-alt = 
@@ -157,7 +177,7 @@ format-prefix-foreground = ${colors.foreground}
 type = custom/script
 interval = 1
 format-prefix = " "
-format = "<label> "
+format = <label>
 exec = python ~/.config/polybar/spotify_status.py -f '{artist} - {song}'
 click-left = playerctl -p spotify previous
 click-middle = playerctl -p spotify play-pause
@@ -187,58 +207,24 @@ ramp-volume-3 = 
 ramp-volume-4 = 
 
 
-[module/cpu]
-type = internal/cpu
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 0.5
-
-; Available tags:
-;   <label> (default)
-;   <bar-load>
-;   <ramp-load>
-;   <ramp-coreload>
-format = <label> <ramp-coreload>
-
-; Available tokens:
-;   %percentage% (default) - total cpu load averaged over all cores
-;   %percentage-sum% - Cumulative load on all cores
-;   %percentage-cores% - load percentage for each core
-;   %percentage-core[1-9]% - load percentage for specific core
-label =  " CPU %percentage%% "
-
-; Spacing between individual per-core ramps
-ramp-coreload-spacing = 1
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
-
-
-;; need java version 1.8 or above
-
-[module/eleven-twelve]
+[module/ten-eleven]
 type = custom/script
-exec = java -jar ~/.config/polybar/scripts/ElevenTwelve.jar
+exec = /opt/jdk-11.0.6/bin/java -jar ~/.config/polybar/scripts/TenEleven.jar
 interval = 60
 format-padding = 2
 format-prefix = " "
 format-foreground = ${colors.foreground}
 format-background = ${colors.secondary}
 
-
+[module/text1]
+type = custom/text
+content = "tamvan "
 [module/manjaro-text]
 type = custom/text
 content = " MANJARO"
 content-padding = 2
 content-background = ${colors.secondary}
 content-foreground = ${colors.foreground}
-
 
 [module/left-arrow]
 type = custom/text
@@ -251,14 +237,3 @@ content-foreground = ${colors.secondary}
 type = custom/text
 content = ""
 content-foreground = ${colors.secondary}
-
-
-[module/window-title]
-type = custom/script
-exec = ~/.config/polybar/scripts/window-title.sh
-format-prefix = " "
-format-padding = 2
-format-foreground = ${colors.foreground}
-format-background = ${colors.secondary}
-interval = 1
-

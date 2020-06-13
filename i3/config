@@ -46,7 +46,10 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh &
 # exec the .Xresources for urxvt
 exec_always --no-startup-id xrdb .Xresources
 
-bindsym $mod+shift+x exec i3lock-fancy
+# starting up fcitx to enable japanese input
+exec_always --no-startup-id fcitx -d
+
+bindsym $mod+shift+x exec i3lock-fancy-rapid 5 3
 
 # enable tapping, natural scrolling and middle click emulation for touchpad use
 exec --no-startup-id xinput set-prop "ELAN1300:00 04F3:3057 Touchpad" "libinput Tapping Enabled" 1
