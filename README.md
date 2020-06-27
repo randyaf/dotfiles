@@ -8,10 +8,10 @@
 ## Installation
 * clone this repository into some folder
   `git clone https://github.com/randyaf/dotfiles.git`
-* copy all the config file into `~/.config`
+* copy all the config files into `~/.config`
 
 ### Setting up the color scheme
-I'm using pywal to match color scheme with wallpaper\
+I'm using pywal to match the color scheme with wallpaper\
 make sure to install `pywal` and `feh`\
 to set the color scheme use this command:\
 `wal -i /your/image.jpg`\
