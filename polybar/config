@@ -5,6 +5,7 @@ foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
+
 [bar/top]
 
 monitor = eDP-1-1
@@ -21,16 +22,15 @@ module-margin-left = 0
 module-margin-right = 0
 font-0 = font\-logos:pixelsize=12;2
 font-1 = FontAwesome:pixelsize=12;2
-font-2 = Product Sans:pixelsize=12:weight=bold;2
-font-3 = FantasqueSansMono Nerd Font Mono:pixelsize=12;2
+font-2 = SFNS Display:pixelsize=12:weight=bold;2
+font-3 = FantasqueSansMono Nerd Font Mono:pixelsize=16;3
 font-4 = Kochi Gothic:pixelsize=12:weight=regular;2
-;tray-position = right
-;tray-padding = 2
-;tray-background = ${colors.background}
-;wm-restack = bspwm
+font-5 = DejaVu Sans:pixelsize=12:weight=regular;3
+
+
 modules-left = window-title right-arrow network-speed-indicator cpu
 modules-center = i3 
-modules-right = spotify wlan volume battery date left-arrow eleven-twelve
+modules-right = wlan volume battery date left-arrow title-button-left title-button-middle title-button-right
 
 
 [module/i3]
@@ -112,11 +112,11 @@ label-connected = "  %downspeed%  %upspeed%"
 
 type = internal/volume
 format-volume = <label-volume>
-label-volume ="%percentage%% "
+label-volume ="%percentage%% "
 label-volume-foreground = ${colors.foreground}
-format-muted-prefix = ""
+format-muted-prefix = ""
 format-muted-foreground = ${colors.foreground}
-label-muted = "Muted "
+label-muted = " muted "
 label-muted-foreground= ${colors.foreground-alt}
 
 
@@ -144,12 +144,12 @@ ramp-capacity-foreground = ${colors.foreground}
 
 type = internal/date
 interval = 30
-label = " %date% "
+label = " %date% %time% "
 date = %a, %B %d%
 date-alt = %a %d
-time = %H:%M
-time-alt = 
-format-prefix = 
+time = %I:%M %p
+time-alt =  %I:%M %p
+format-prefix = 
 format-prefix-foreground = ${colors.foreground}
 
 
@@ -199,14 +199,14 @@ interval = 0.5
 ;   <bar-load>
 ;   <ramp-load>
 ;   <ramp-coreload>
-format = <label> <ramp-coreload>
+format = <label>
 
 ; Available tokens:
 ;   %percentage% (default) - total cpu load averaged over all cores
 ;   %percentage-sum% - Cumulative load on all cores
 ;   %percentage-cores% - load percentage for each core
 ;   %percentage-core[1-9]% - load percentage for specific core
-label =  " CPU %percentage%% "
+label =  "  %percentage%% "
 
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 1
@@ -231,27 +231,15 @@ format-prefix = " "
 format-foreground = ${colors.foreground}
 format-background = ${colors.secondary}
 
-
-[module/manjaro-text]
-type = custom/text
-content = " MANJARO"
-content-padding = 2
-content-background = ${colors.secondary}
-content-foreground = ${colors.foreground}
-
-
 [module/left-arrow]
 type = custom/text
-content = ""
+content = ""
 content-foreground = ${colors.secondary}
-
-
 
 [module/right-arrow]
 type = custom/text
-content = ""
+content = ""
 content-foreground = ${colors.secondary}
-
 
 [module/window-title]
 type = custom/script
@@ -261,4 +249,23 @@ format-padding = 2
 format-foreground = ${colors.foreground}
 format-background = ${colors.secondary}
 interval = 1
+
+[module/title-button-left]
+type = custom/text
+content = " 🌑 "
+content-foreground = 00CA4E
+content-background = ${colors.secondary}
+
+[module/title-button-middle]
+type = custom/text
+content = "🌑 "
+content-foreground = FFBD44
+content-background = ${colors.secondary}
+
+[module/title-button-right]
+type = custom/text
+click-left = ~/.config/polybar/scripts/title-button.sh
+content = "🌑 "
+content-foreground = FF605C
+content-background = ${colors.secondary}
 

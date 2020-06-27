@@ -1,5 +1,6 @@
 # My Dotfiles
 
+![Screenshot 4](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot4.png) 
 ![Screenshot 3](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot3.png) 
 ![Screenshot 1](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot1.png)
 ![Screenshot 2](https://raw.githubusercontent.com/randyaf/dotfiles/master/images/screenshot2.png)
@@ -10,7 +11,7 @@
 * copy all the config file into `~/.config`
 
 ### Setting up the color scheme
-I'm using pywal to match the color scheme with wallpaper\
+I'm using pywal to match color scheme with wallpaper\
 make sure to install `pywal` and `feh`\
 to set the color scheme use this command:\
 `wal -i /your/image.jpg`\
